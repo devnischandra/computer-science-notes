@@ -1297,19 +1297,11 @@ The Java Collection Framework (JCF) is a set of interfaces and classes used to s
 
 Instead of creating data structures from scratch, we can use built-in classes such as `ArrayList`, `LinkedList`, `HashSet`, and `HashMap`.
 
-```mermaid
-flowchart TB
-    Collection --> List
-    Collection --> Queue
-    Collection --> Set
-    List --> ArrayList
-    List --> LinkedList
-    Queue --> PriorityQueue
-    Set --> HashSet
-    Set --> TreeSet
-    Map["Map<br/>(does not extend Collection)"] --> HashMap
-    Map --> TreeMap
-```
+<p>
+  <img src="assets/images/java-collections-framework.png"
+       alt="Java Collections Framework Hierarchy"
+       width="70%">
+</p>
 
 | Interface | Description |
 |-----------|-------------|
