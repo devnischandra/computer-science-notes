@@ -1164,6 +1164,59 @@ classDiagram
 | Methods | Can have abstract and concrete methods. | Can have abstract, default, static and private methods. |
 | Inheritance | A class can extend only one class. | A class can implement multiple interfaces. |
 
+##### The 1-Second Mental Model
+
+Ask yourself: is it a "WHAT IT IS" relationship or a "WHAT IT CAN DO" relationship?
+
+```mermaid
+flowchart LR
+    Q{"Is it a<br/>WHAT IT IS or<br/>WHAT IT CAN DO<br/>relationship?"}
+    Q -->|"IS-A (what it IS)"| A["Use ABSTRACT CLASS"]
+    Q -->|"CAN-DO (what it CAN DO)"| I["Use INTERFACE"]
+```
+
+##### Quick Examples
+
+**1. Abstract class = "WHAT IT IS" (identity and shared state)**
+
+Use an abstract class when classes share a common identity, core data, and code.
+
+- `Dog`, `Cat`, and `Lion` → they are all Animals (`abstract class Animal`).
+  - They share common state/data (like `age`, `name`, `health`).
+  - They share common code (like `sleepSound()` or `eat()`).
+
+```mermaid
+classDiagram
+    class Animal {
+        <<abstract>>
+        age
+        name
+        health
+        sleepSound()
+        eat()
+    }
+    Animal <|-- Dog
+    Animal <|-- Cat
+    Animal <|-- Lion
+```
+
+**2. Interface = "WHAT IT CAN DO" (behavior and capability)**
+
+Use an interface when completely unrelated classes share a capability or action.
+
+- `Bird`, `Airplane`, and `Superhero` → they have nothing in common regarding identity, but they all can fly (`interface Flyable`).
+- `Document`, `Photo`, and `Invoice` → they are unrelated objects, but they all can print (`interface Printable`).
+
+```mermaid
+classDiagram
+    class Flyable {
+        <<interface>>
+    }
+    Flyable <|.. Bird
+    Flyable <|.. Airplane
+    Flyable <|.. Superhero
+```
+
 ##### To resolve conflicts
 
 1. Same abstract method in multiple interfaces -> only one implementation is required.
