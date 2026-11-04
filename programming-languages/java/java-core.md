@@ -682,6 +682,66 @@ Car audi = new Car("Red", 200);
 > [!NOTE]
 > Default constructor -> automatically provided by Java if no constructor is defined.
 
+### `this` Keyword
+
+The `this` keyword is used to refer to the current object of a class.
+
+It is mainly used for four purposes:
+
+1. When local variables or constructor parameters have the same names as instance variables, use `this` to distinguish them.
+2. Use `this` to explicitly call another method of the same class.
+3. Use `this()` to call another constructor of the same class.
+4. Use `this` to pass the current object to another method or constructor.
+
+Example:
+
+```java
+class Student {
+    String name;
+    
+    // 1. Distinguish instance variable from constructor parameter
+    Student(String name) {
+        this.name = name; // Instance variable = parameter
+    }
+
+    // 2. Call another method of the same class
+    void display() {
+        System.out.println(this.name);
+    }
+
+    void show() {
+        this.display();
+    }
+
+    // 3. Call another constructor of the same class
+    Student() {
+        this("Nishant"); // Calls parameterized constructor
+    }
+
+    // 4. Pass the current object as an argument
+    void passObject() {
+        print(this);
+    }
+
+    void print(Student s) {
+        System.out.println(s.name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Student s = new Student();
+
+        s.show();
+        s.passObject();
+    }
+}
+```
+
+> [!NOTE]
+> `this` refers to the current object, so it cannot be used directly in a static context, because static members belong to the class, not a particular object.
+
 ### Four Pillars of OOPs
 
 ```mermaid
@@ -808,6 +868,79 @@ flowchart TB
     A["A: turnOn()"] --> C["C extends A, B (invalid)"]
     B["B: turnOn()"] --> C
 ```
+
+### `super` Keyword
+
+The `super` keyword is used to refer to the immediate parent class object.
+
+It is mainly used for three purposes:
+
+1. When the child class has a variable with the same name as the parent class, use `super` to access the parent's variable.
+2. Use `super` to call an overridden method from the parent class.
+3. Use `super()` to call the immediate parent class constructor.
+
+Example:
+
+```java
+class Animal {
+    String name = "Animal";
+
+    // Parent class method
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+
+    // Parent class constructor
+    Animal() {
+        System.out.println("Animal constructor");
+    }
+}
+
+class Dog extends Animal {
+    String name = "Dog";
+
+    Dog() {
+        super(); // 3. Calls the immediate parent class constructor
+    }
+
+    void display() {
+        // 1. Access parent class variable
+        System.out.println(super.name); // Animal
+
+        // 2. Call parent class method
+        super.sound();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.display();
+    }
+}
+```
+
+```mermaid
+classDiagram
+    class Animal {
+        name = "Animal"
+        sound()
+        Animal()
+    }
+    class Dog {
+        name = "Dog"
+        display()
+        Dog()
+    }
+    Animal <|-- Dog
+```
+
+> [!IMPORTANT]
+> Remember: `this` refers to the current object, whereas `super` is used to access the immediate parent's members.
+
+> [!NOTE]
+> `this()` and `super()` must be the first statement in a constructor.
+> A constructor can't call both.
 
 #### Polymorphism
 
