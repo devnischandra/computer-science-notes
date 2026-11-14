@@ -1078,9 +1078,11 @@ Properties:
 - A class can implement multiple interfaces.
 - Cannot be instantiated directly.
 - Variables declared inside an interface are implicitly `public static final` (constants).
+- Methods inside an interface are implicitly `public` (except `private` helper methods).
+- **Overriding Access Rule:** When a class implements or overrides an interface method, it *must* explicitly declare it as `public` (cannot assign weaker access privileges).
 - An interface can extend multiple interfaces.
 
-It can have abstract methods, static constants, static methods and default methods.
+It can have abstract methods, static constants, static methods, private methods, and default methods.
 
 ```java
 interface Vehicle {
