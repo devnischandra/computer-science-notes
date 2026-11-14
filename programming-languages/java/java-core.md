@@ -1080,7 +1080,7 @@ Properties:
 - Variables declared inside an interface are implicitly `public static final` (constants).
 - Methods inside an interface are implicitly `public` (except `private` helper methods).
 - **Overriding Access Rule:** When a class implements or overrides an interface method, it *must* explicitly declare it as `public` (cannot assign weaker access privileges).
-- An interface can extend multiple interfaces.
+- An interface can extend one or multiple interfaces using `extends` (it can *never* use `implements` or extend a class).
 
 It can have abstract methods, static constants, static methods, private methods, and default methods.
 
